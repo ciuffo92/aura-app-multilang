@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Aura - Cycle & Health Tracker</title>
-    <!-- Web-App Support für iPhone -->
+    
+    <!-- Configurazione Web-App iPhone & Icona per Schermata Home -->
     <meta name="theme-color" content="#FDF8F5">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Aura">
     <meta name="format-detection" content="telephone=no">
+    
+    <!-- Icona HD per Schermata Home -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://img.icons8.com/isometric-labels/180/sparkles.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://img.icons8.com/isometric-labels/32/sparkles.png">
 
-    <!-- CDNs per Tailwind CSS, Chart.js e Lucide Icons -->
+    <!-- CDNs -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -150,7 +155,6 @@
 
                 <!-- Actions & Selettore Lingua -->
                 <div class="flex items-center gap-2">
-                    <!-- Selettore Lingua con 6 Lingue -->
                     <select id="lang-select" onchange="changeLanguage(this.value)" class="min-h-[44px] px-2 py-1 bg-cream border border-rose-200 rounded-xl text-xs font-bold text-plum focus:outline-none cursor-pointer">
                         <option value="de">🇩🇪 DE</option>
                         <option value="es">🇪🇸 ES</option>
@@ -160,7 +164,7 @@
                         <option value="pt">🇵🇹 PT</option>
                     </select>
 
-                    <button onclick="openLogModal()" aria-label="Eintragen" class="flex items-center justify-center gap-2 min-w-[110px] sm:min-w-[130px] min-h-[44px] bg-gradient-to-r from-rose-500 to-rose-400 hover:from-rose-600 hover:to-rose-500 text-white font-semibold px-3 sm:px-4 py-2.5 rounded-xl text-sm shadow-md shadow-rose-200 transition-all hover:scale-[1.02] active:scale-[0.96]">
+                    <button onclick="openLogModal()" class="flex items-center justify-center gap-2 min-w-[110px] sm:min-w-[130px] min-h-[44px] bg-gradient-to-r from-rose-500 to-rose-400 hover:from-rose-600 hover:to-rose-500 text-white font-semibold px-3 sm:px-4 py-2.5 rounded-xl text-sm shadow-md shadow-rose-200 transition-all hover:scale-[1.02] active:scale-[0.96]" aria-label="Eintragen">
                         <i data-lucide="plus-circle" class="w-5 h-5"></i>
                         <span id="txt-btn-log">Eintragen</span>
                     </button>
@@ -188,16 +192,16 @@
                         <span id="current-date-badge" class="text-xs font-semibold text-slate-500 bg-white/80 px-3 py-1.5 rounded-xl border border-slate-100 shadow-sm">Heute</span>
                     </div>
 
-                    <!-- Fortschrittskreis -->
+                    <!-- Fortschrittskreis con testo ottimizzato per evitare ridimensionamenti errati -->
                     <div class="flex flex-col sm:flex-row items-center justify-around gap-8 my-4">
                         <div class="relative w-44 h-44 sm:w-48 sm:h-48 flex items-center justify-center">
                             <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
                                 <circle cx="50" cy="50" r="42" stroke="currentColor" stroke-width="8" class="text-rose-100" fill="transparent"></circle>
                                 <circle id="cycle-progress-circle" cx="50" cy="50" r="42" stroke="currentColor" stroke-width="8" class="text-rose-500 transition-all duration-1000 ease-out" fill="transparent" stroke-dasharray="263.89" stroke-dashoffset="130" stroke-linecap="round"></circle>
                             </svg>
-                            <div class="absolute text-center">
-                                <span id="current-cycle-day" class="block text-4xl font-serif font-bold text-plum">Tag 1</span>
-                                <span id="total-cycle-length-label" class="text-xs text-slate-500 font-medium">von 28 Tagen</span>
+                            <div class="absolute text-center px-2">
+                                <span id="current-cycle-day" class="block text-2xl sm:text-3xl font-serif font-bold text-plum leading-tight">Tag 15</span>
+                                <span id="total-cycle-length-label" class="text-[11px] sm:text-xs text-slate-500 font-medium">von 28 Tagen</span>
                             </div>
                         </div>
 
@@ -302,16 +306,16 @@
             </div>
         </section>
 
-        <!-- TAB 2: KALENDER (Blocchi h-20 sm:h-24 grandi per iPhone) -->
+        <!-- TAB 2: KALENDER -->
         <section id="tab-calendar" class="tab-content hidden space-y-6">
             <div class="bg-white rounded-3xl p-3 sm:p-8 border border-rose-100 shadow-sm">
                 <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
                     <div class="flex items-center justify-between sm:justify-start gap-3 w-full sm:w-auto">
-                        <button onclick="changeMonth(-1)" class="flex items-center justify-center w-11 h-11 hover:bg-rose-50 rounded-xl border border-slate-200">
+                        <button onclick="changeMonth(-1)" class="w-11 h-11 flex items-center justify-center hover:bg-rose-50 rounded-xl border border-slate-200">
                             <i data-lucide="chevron-left" class="w-5 h-5 text-slate-600"></i>
                         </button>
                         <h2 id="calendar-month-year" class="text-xl sm:text-2xl font-serif font-bold text-plum text-center">Monat Jahr</h2>
-                        <button onclick="changeMonth(1)" class="flex items-center justify-center w-11 h-11 hover:bg-rose-50 rounded-xl border border-slate-200">
+                        <button onclick="changeMonth(1)" class="w-11 h-11 flex items-center justify-center hover:bg-rose-50 rounded-xl border border-slate-200">
                             <i data-lucide="chevron-right" class="w-5 h-5 text-slate-600"></i>
                         </button>
                     </div>
@@ -338,7 +342,7 @@
                         <p id="txt-stats-sub" class="text-xs text-slate-500 mt-1">Verlauf und Vergleiche der letzten Monate im gesunden Bereich (21–35 Tage).</p>
                     </div>
                     <div class="flex p-1 bg-cream rounded-2xl border border-rose-100 text-xs font-semibold">
-                        <button id="timeframe-6m" onclick="setTimeframe(6)" class="flex-1 sm:flex-none px-4 py-2 rounded-xl bg-white text-rose-600 shadow-sm">6 Monate</button>
+                        <button id="timeframe-6m" onclick="setTimeframe(6)" class="flex-1 sm:flex-none px-4 py-2 rounded-xl transition-all bg-white text-rose-600 shadow-sm">6 Monate</button>
                         <button id="timeframe-1y" onclick="setTimeframe(12)" class="flex-1 sm:flex-none px-4 py-2 rounded-xl text-slate-600 hover:text-rose-600">1 Jahr</button>
                     </div>
                 </div>
@@ -464,15 +468,12 @@
     <script>
         const TRANSLATIONS = {
             de: {
-                locale: 'de-DE',
-                tagline: 'Zyklustracker',
+                locale: 'de-DE', tagline: 'Zyklustracker',
                 navDash: 'Übersicht', navCal: 'Kalender', navStats: 'Statistik', navNut: 'Ernährung',
-                btnLog: 'Eintragen',
-                dashBadge: 'Live-Tracking', dashTitle: 'Aktueller Zyklusstatus',
+                btnLog: 'Eintragen', dashBadge: 'Live-Tracking', dashTitle: 'Aktueller Zyklusstatus',
                 lblCurrentPhase: 'Aktuelle Phase', lblNextPeriod: 'Nächste Periode', lblOvulation: 'Geschätzter Eisprung',
                 lblAvgCycle: 'Ø Zyklus (Tage)', lblAvgBleed: 'Ø Blutung (Tage)',
-                spotlightTag: 'Ernährungsempfehlung',
-                historyTitle: 'Letzte Einträge', btnAddNew: 'Neu eintragen',
+                spotlightTag: 'Ernährungsempfehlung', historyTitle: 'Letzte Einträge', btnAddNew: 'Neu eintragen',
                 thStart: 'Startdatum', thEnd: 'Enddatum', thBleed: 'Blutungsdauer', thCycle: 'Zykluslänge', thAction: 'Aktion',
                 legPeriod: 'Periode', legPred: 'Prognose', legOvu: 'Eisprung', legFertile: 'Fruchtbar',
                 dow: ['So','Mo','Di','Mi','Do','Fr','Sa'],
@@ -484,15 +485,12 @@
                 modalSettingsTitle: 'Einstellungen', lblDefaultCycle: 'Standard-Zykluslänge (Tage)', lblDefaultBleed: 'Standard-Blutungsdauer (Tage)', btnLoadSample: '6-Monate Testdaten laden', btnClearData: 'Alle Daten löschen', btnClose: 'Schließen', btnApply: 'Übernehmen'
             },
             es: {
-                locale: 'es-ES',
-                tagline: 'Control del Ciclo',
+                locale: 'es-ES', tagline: 'Control del Ciclo',
                 navDash: 'Inicio', navCal: 'Calendario', navStats: 'Estadísticas', navNut: 'Nutrición',
-                btnLog: 'Registrar',
-                dashBadge: 'Seguimiento en Vivo', dashTitle: 'Estado Actual de tu Ciclo',
+                btnLog: 'Registrar', dashBadge: 'Seguimiento en Vivo', dashTitle: 'Estado Actual de tu Ciclo',
                 lblCurrentPhase: 'Fase Actual', lblNextPeriod: 'Próxima Menstruación', lblOvulation: 'Ovulación Estimada',
                 lblAvgCycle: 'Promedio Ciclo (Días)', lblAvgBleed: 'Promedio Regla (Días)',
-                spotlightTag: 'Recomendación Nutricional',
-                historyTitle: 'Historial Reciente', btnAddNew: 'Añadir Registro',
+                spotlightTag: 'Recomendación Nutricional', historyTitle: 'Historial Reciente', btnAddNew: 'Añadir Registro',
                 thStart: 'Fecha Inicio', thEnd: 'Fecha Fin', thBleed: 'Duración Regla', thCycle: 'Duración Ciclo', thAction: 'Acción',
                 legPeriod: 'Regla', legPred: 'Pronóstico', legOvu: 'Ovulación', legFertile: 'Fértil',
                 dow: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
@@ -504,15 +502,12 @@
                 modalSettingsTitle: 'Ajustes del Ciclo', lblDefaultCycle: 'Duración Ciclo (Días)', lblDefaultBleed: 'Duración Regla (Días)', btnLoadSample: 'Cargar Datos de Prueba', btnClearData: 'Borrar Todos los Datos', btnClose: 'Cerrar', btnApply: 'Aplicar'
             },
             it: {
-                locale: 'it-IT',
-                tagline: 'Tracker Ciclo',
+                locale: 'it-IT', tagline: 'Tracker Ciclo',
                 navDash: 'Home', navCal: 'Calendario', navStats: 'Statistiche', navNut: 'Nutrizione',
-                btnLog: 'Registra',
-                dashBadge: 'Tracking in Tempo Reale', dashTitle: 'Stato Attuale del Ciclo',
+                btnLog: 'Registra', dashBadge: 'Tracking in Tempo Reale', dashTitle: 'Stato Attuale del Ciclo',
                 lblCurrentPhase: 'Fase Attuale', lblNextPeriod: 'Prossime Mestruazioni', lblOvulation: 'Ovulazione Stimata',
                 lblAvgCycle: 'Media Ciclo (Giorni)', lblAvgBleed: 'Media Mestruazione (Giorni)',
-                spotlightTag: 'Consiglio Nutrizionale',
-                historyTitle: 'Storico Recente', btnAddNew: 'Aggiungi Nuovo',
+                spotlightTag: 'Consiglio Nutrizionale', historyTitle: 'Storico Recente', btnAddNew: 'Aggiungi Nuovo',
                 thStart: 'Data Inizio', thEnd: 'Data Fine', thBleed: 'Durata Flusso', thCycle: 'Durata Ciclo', thAction: 'Azione',
                 legPeriod: 'Mestruazione', legPred: 'Previsione', legOvu: 'Ovulazione', legFertile: 'Fertile',
                 dow: ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'],
@@ -524,15 +519,12 @@
                 modalSettingsTitle: 'Impostazioni Ciclo', lblDefaultCycle: 'Durata Predefinita Ciclo', lblDefaultBleed: 'Durata Predefinita Flusso', btnLoadSample: 'Carica Dati di Prova', btnClearData: 'Cancella Tutti i Dati', btnClose: 'Chiudi', btnApply: 'Applica'
             },
             en: {
-                locale: 'en-US',
-                tagline: 'Cycle Tracker',
+                locale: 'en-US', tagline: 'Cycle Tracker',
                 navDash: 'Overview', navCal: 'Calendar', navStats: 'Statistics', navNut: 'Nutrition',
-                btnLog: 'Log Period',
-                dashBadge: 'Live Tracking', dashTitle: 'Current Cycle Status',
+                btnLog: 'Log Period', dashBadge: 'Live Tracking', dashTitle: 'Current Cycle Status',
                 lblCurrentPhase: 'Current Phase', lblNextPeriod: 'Next Period', lblOvulation: 'Estimated Ovulation',
                 lblAvgCycle: 'Avg Cycle (Days)', lblAvgBleed: 'Avg Period (Days)',
-                spotlightTag: 'Nutrition Spotlight',
-                historyTitle: 'Recent History', btnAddNew: 'Log New',
+                spotlightTag: 'Nutrition Spotlight', historyTitle: 'Recent History', btnAddNew: 'Log New',
                 thStart: 'Start Date', thEnd: 'End Date', thBleed: 'Bleed Length', thCycle: 'Cycle Length', thAction: 'Action',
                 legPeriod: 'Period', legPred: 'Predicted', legOvu: 'Ovulation', legFertile: 'Fertile',
                 dow: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
@@ -544,15 +536,12 @@
                 modalSettingsTitle: 'Cycle Settings', lblDefaultCycle: 'Default Cycle Length (Days)', lblDefaultBleed: 'Default Bleed Length (Days)', btnLoadSample: 'Load 6-Month Sample Data', btnClearData: 'Clear All Data', btnClose: 'Close', btnApply: 'Apply'
             },
             fr: {
-                locale: 'fr-FR',
-                tagline: 'Suivi du Cycle',
+                locale: 'fr-FR', tagline: 'Suivi du Cycle',
                 navDash: 'Aperçu', navCal: 'Calendrier', navStats: 'Statistiques', navNut: 'Nutrition',
-                btnLog: 'Enregistrer',
-                dashBadge: 'Suivi en Direct', dashTitle: 'Statut Actuel du Cycle',
+                btnLog: 'Enregistrer', dashBadge: 'Suivi en Direct', dashTitle: 'Statut Actuel du Cycle',
                 lblCurrentPhase: 'Phase Actuelle', lblNextPeriod: 'Prochaines Règles', lblOvulation: 'Ovulation Estimée',
                 lblAvgCycle: 'Moyenne Cycle (Jours)', lblAvgBleed: 'Moyenne Règles (Jours)',
-                spotlightTag: 'Conseil Nutrition',
-                historyTitle: 'Historique Récent', btnAddNew: 'Ajouter Nouveau',
+                spotlightTag: 'Conseil Nutrition', historyTitle: 'Historique Récent', btnAddNew: 'Ajouter Nouveau',
                 thStart: 'Date Début', thEnd: 'Date Fin', thBleed: 'Durée Règles', thCycle: 'Durée Cycle', thAction: 'Action',
                 legPeriod: 'Règles', legPred: 'Prévision', legOvu: 'Ovulation', legFertile: 'Fertile',
                 dow: ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],
@@ -564,15 +553,12 @@
                 modalSettingsTitle: 'Réglages du Cycle', lblDefaultCycle: 'Durée Par Défaut du Cycle', lblDefaultBleed: 'Durée Par Défaut des Règles', btnLoadSample: 'Charger Données Test', btnClearData: 'Effacer Toutes les Données', btnClose: 'Fermer', btnApply: 'Appliquer'
             },
             pt: {
-                locale: 'pt-PT',
-                tagline: 'Monitor de Ciclo',
+                locale: 'pt-PT', tagline: 'Monitor de Ciclo',
                 navDash: 'Início', navCal: 'Calendário', navStats: 'Estatísticas', navNut: 'Nutrição',
-                btnLog: 'Registar',
-                dashBadge: 'Acompanhamento em Tempo Real', dashTitle: 'Estado Atual do Ciclo',
+                btnLog: 'Registar', dashBadge: 'Acompanhamento em Tempo Real', dashTitle: 'Estado Atual do Ciclo',
                 lblCurrentPhase: 'Fase Atual', lblNextPeriod: 'Próxima Menstruação', lblOvulation: 'Ovulação Estimada',
                 lblAvgCycle: 'Média do Ciclo (Dias)', lblAvgBleed: 'Média do Período (Dias)',
-                spotlightTag: 'Destaque de Nutrição',
-                historyTitle: 'Histórico Recente', btnAddNew: 'Adicionar Novo',
+                spotlightTag: 'Destaque de Nutrição', historyTitle: 'Histórico Recente', btnAddNew: 'Adicionar Novo',
                 thStart: 'Data de Início', thEnd: 'Data de Fim', thBleed: 'Duração do Período', thCycle: 'Duração do Ciclo', thAction: 'Ação',
                 legPeriod: 'Menstruação', legPred: 'Previsão', legOvu: 'Ovulação', legFertile: 'Fértil',
                 dow: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
@@ -585,9 +571,9 @@
             }
         };
 
-        const STORAGE_KEY_LOGS = 'aura_period_logs_v3';
-        const STORAGE_KEY_SETTINGS = 'aura_settings_v3';
-        const STORAGE_KEY_LANG = 'aura_lang_choice_v3';
+        const STORAGE_KEY_LOGS = 'aura_period_logs_v5';
+        const STORAGE_KEY_SETTINGS = 'aura_settings_v5';
+        const STORAGE_KEY_LANG = 'aura_lang_choice_v5';
 
         let currentLang = 'de';
         let periodLogs = [];
@@ -797,10 +783,10 @@
             document.getElementById('avg-period-dash').textContent = avgBleed;
 
             if (variation <= 2) {
-                document.getElementById('regularity-status').textContent = currentLang === 'de' ? "Sehr Regelmäßig" : (currentLang === 'es' ? "Muy Regular" : (currentLang === 'it' ? "Molto Regolare" : (currentLang === 'fr' ? "Très Régulier" : (currentLang === 'pt' ? "Muito Regular" : "Very Regular"))));
+                document.getElementById('regularity-status').textContent = currentLang === 'de' ? "Sehr Regelmäßig" : (currentLang === 'es' ? "Muy Regular" : (currentLang === 'it' ? "Molto Regolare" : "Regular"));
                 document.getElementById('regularity-desc').textContent = `±${variation}`;
             } else {
-                document.getElementById('regularity-status').textContent = currentLang === 'de' ? "Schwankend" : (currentLang === 'es' ? "Irregular" : (currentLang === 'it' ? "Irregolare" : (currentLang === 'fr' ? "Irrégulier" : (currentLang === 'pt' ? "Irregular" : "Irregular"))));
+                document.getElementById('regularity-status').textContent = currentLang === 'de' ? "Schwankend" : (currentLang === 'es' ? "Irregular" : (currentLang === 'it' ? "Irregolare" : "Irregular"));
                 document.getElementById('regularity-desc').textContent = `±${variation}`;
             }
 
@@ -886,30 +872,135 @@
             lucide.createIcons();
         }
 
+        /* CALENDARIO CON CALCOLO CICLI E PREVISIONI FUTURE */
         function renderCalendar() {
             const t = TRANSLATIONS[currentLang];
             const grid = document.getElementById('calendar-days-grid');
             grid.innerHTML = '';
+
             const year = currentCalendarDate.getFullYear();
             const month = currentCalendarDate.getMonth();
+
             document.getElementById('calendar-month-year').textContent = new Date(year, month).toLocaleDateString(t.locale, { month: 'long', year: 'numeric' });
 
             const firstDayIndex = new Date(year, month, 1).getDay();
             const totalDays = new Date(year, month + 1, 0).getDate();
 
+            const { avgCycle, avgBleed } = getCalculatedAverages();
+
             for (let i = 0; i < firstDayIndex; i++) {
-                grid.appendChild(document.createElement('div'));
+                const emptyCell = document.createElement('div');
+                emptyCell.className = 'h-20 sm:h-24 p-1 bg-cream/30 rounded-2xl opacity-40';
+                grid.appendChild(emptyCell);
             }
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
 
             for (let day = 1; day <= totalDays; day++) {
                 const dateObj = new Date(year, month, day);
                 const dateStr = formatDateISO(dateObj);
-                let isPeriod = periodLogs.some(l => dateStr >= l.startDate && dateStr <= l.endDate);
 
-                const cell = document.createElement('div');
-                cell.className = `h-20 sm:h-24 p-1.5 sm:p-2 rounded-2xl border flex flex-col justify-between ${isPeriod ? 'bg-rose-500 text-white font-bold' : 'bg-white text-slate-700'}`;
-                cell.innerHTML = `<span class="text-xs sm:text-sm font-semibold">${day}</span>`;
-                grid.appendChild(cell);
+                let isActualPeriod = false;
+                let isPredictedPeriod = false;
+                let isOvulation = false;
+                let isFertile = false;
+
+                // 1. Periodi effettivi
+                periodLogs.forEach(log => {
+                    if (dateStr >= log.startDate && dateStr <= log.endDate) {
+                        isActualPeriod = true;
+                    }
+                });
+
+                // 2. Previsioni future per 12 mesi
+                if (!isActualPeriod && periodLogs.length > 0) {
+                    const latestLog = periodLogs[periodLogs.length - 1];
+                    const latestStart = parseDate(latestLog.startDate);
+
+                    for (let c = 1; c <= 12; c++) {
+                        const predStart = new Date(latestStart);
+                        predStart.setDate(predStart.getDate() + (avgCycle * c));
+
+                        const predEnd = new Date(predStart);
+                        predEnd.setDate(predEnd.getDate() + avgBleed - 1);
+
+                        const predStartStr = formatDateISO(predStart);
+                        const predEndStr = formatDateISO(predEnd);
+
+                        if (dateStr >= predStartStr && dateStr <= predEndStr) {
+                            isPredictedPeriod = true;
+                        }
+
+                        const ovuDate = new Date(predStart);
+                        ovuDate.setDate(ovuDate.getDate() - 14);
+                        const ovuStr = formatDateISO(ovuDate);
+
+                        const fertileStart = new Date(ovuDate);
+                        fertileStart.setDate(fertileStart.getDate() - 4);
+                        const fertileEnd = new Date(ovuDate);
+                        fertileEnd.setDate(fertileEnd.getDate() + 1);
+
+                        if (dateStr === ovuStr) isOvulation = true;
+                        if (dateObj >= fertileStart && dateObj <= fertileEnd) isFertile = true;
+                    }
+                }
+
+                // 3. Ovulazione e fertilità del passato
+                if (!isActualPeriod && !isPredictedPeriod && periodLogs.length > 0) {
+                    periodLogs.forEach(log => {
+                        const logStart = parseDate(log.startDate);
+                        const ovuDate = new Date(logStart);
+                        ovuDate.setDate(ovuDate.getDate() + avgCycle - 14);
+
+                        const ovuStr = formatDateISO(ovuDate);
+                        const fertileStart = new Date(ovuDate);
+                        fertileStart.setDate(fertileStart.getDate() - 4);
+                        const fertileEnd = new Date(ovuDate);
+                        fertileEnd.setDate(fertileEnd.getDate() + 1);
+
+                        if (dateStr === ovuStr) isOvulation = true;
+                        if (dateObj >= fertileStart && dateObj <= fertileEnd) isFertile = true;
+                    });
+                }
+
+                const dayCell = document.createElement('div');
+                let cellStyle = "h-20 sm:h-24 p-1.5 sm:p-2 rounded-2xl border transition-all flex flex-col justify-between ";
+
+                const isToday = dateObj.getTime() === today.getTime();
+                if (isToday) {
+                    cellStyle += "ring-2 ring-plum font-bold ";
+                }
+
+                if (isActualPeriod) {
+                    cellStyle += "bg-rose-500 text-white border-rose-600 shadow-md shadow-rose-200 ";
+                } else if (isPredictedPeriod) {
+                    cellStyle += "bg-rose-100 text-rose-800 border-rose-300 border-dashed ";
+                } else if (isOvulation) {
+                    cellStyle += "bg-purple-600 text-white border-purple-700 shadow-md shadow-purple-200 ";
+                } else if (isFertile) {
+                    cellStyle += "bg-purple-50 text-purple-900 border-purple-200 ";
+                } else {
+                    cellStyle += "bg-white text-slate-700 border-slate-100 hover:border-rose-200 ";
+                }
+
+                const todayLabel = currentLang === 'de' ? "Heute" : (currentLang === 'es' ? "Hoy" : (currentLang === 'it' ? "Oggi" : (currentLang === 'fr' ? "Aujourd'hui" : (currentLang === 'pt' ? "Hoje" : "Today"))));
+
+                dayCell.className = cellStyle;
+                dayCell.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs sm:text-sm font-semibold">${day}</span>
+                        ${isToday ? `<span class="text-[9px] uppercase tracking-wider font-extrabold px-1.5 py-0.5 rounded bg-white/20">${todayLabel}</span>` : ''}
+                    </div>
+                    <div class="text-[10px] font-medium leading-tight">
+                        ${isActualPeriod ? t.legPeriod : ''}
+                        ${isPredictedPeriod ? t.legPred : ''}
+                        ${isOvulation ? t.legOvu : ''}
+                        ${!isOvulation && isFertile ? t.legFertile : ''}
+                    </div>
+                `;
+
+                grid.appendChild(dayCell);
             }
         }
 
