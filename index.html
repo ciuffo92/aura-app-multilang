@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Aura - Cycle & Health Tracker</title>
     
-    <!-- Configurazione Web-App iPhone & Icona per Schermata Home -->
+    <!-- Configurazione Web App iOS -->
     <meta name="theme-color" content="#FDF8F5">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -13,9 +13,9 @@
     <meta name="apple-mobile-web-app-title" content="Aura">
     <meta name="format-detection" content="telephone=no">
     
-    <!-- Icona PNG ad alta risoluzione garantita per iOS Home Screen -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://img.icons8.com/isometric-labels/180/sparkles.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://img.icons8.com/isometric-labels/32/sparkles.png">
+    <!-- Icona per Schermata Home iOS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./apple-touch-icon.png">
 
     <!-- CDNs per Tailwind CSS, Chart.js e Lucide Icons -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -130,9 +130,10 @@
                         <option value="pt">🇵🇹 PT</option>
                     </select>
 
-                    <button onclick="openLogModal()" class="flex items-center justify-center gap-1.5 min-h-[44px] bg-gradient-to-r from-rose-500 to-rose-400 hover:from-rose-600 hover:to-rose-500 text-white font-semibold px-3 sm:px-4 py-2.5 rounded-xl text-xs sm:text-sm shadow-md shadow-rose-200 transition-all hover:scale-[1.02] active:scale-[0.96]" aria-label="Eintragen">
-                        <i data-lucide="plus-circle" class="w-4 h-4 sm:w-5 sm:h-5"></i>
-                        <span id="txt-btn-log">Eintragen</span>
+                    <!-- Pulsante + (Mostra solo il quadratino con + in verticale su iPhone) -->
+                    <button onclick="openLogModal()" class="flex items-center justify-center gap-1.5 min-w-[44px] min-h-[44px] bg-gradient-to-r from-rose-500 to-rose-400 hover:from-rose-600 hover:to-rose-500 text-white font-semibold px-3 sm:px-4 py-2.5 rounded-xl text-xs sm:text-sm shadow-md shadow-rose-200 transition-all hover:scale-[1.02] active:scale-[0.96]" aria-label="Eintragen">
+                        <i data-lucide="plus-circle" class="w-5 h-5"></i>
+                        <span id="txt-btn-log" class="hidden sm:inline">Eintragen</span>
                     </button>
                     <button onclick="openSettingsModal()" class="w-11 h-11 flex items-center justify-center text-slate-500 hover:text-rose-600 hover:bg-rose-50 active:bg-rose-100 rounded-xl transition-all" title="Einstellungen">
                         <i data-lucide="settings" class="w-5 h-5"></i>
@@ -158,7 +159,7 @@
                         <span id="current-date-badge" class="text-xs font-semibold text-slate-500 bg-white/80 px-3 py-1.5 rounded-xl border border-slate-100 shadow-sm">Heute</span>
                     </div>
 
-                    <!-- Fortschrittskreis con testo proporzionato -->
+                    <!-- Fortschrittskreis -->
                     <div class="flex flex-col sm:flex-row items-center justify-around gap-8 my-4">
                         <div class="relative w-44 h-44 sm:w-48 sm:h-48 flex items-center justify-center">
                             <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
@@ -272,7 +273,7 @@
             </div>
         </section>
 
-        <!-- TAB 2: KALENDER (Cubi grandi perfetti sia in verticale che orizzontale) -->
+        <!-- TAB 2: KALENDER (Disposizione a quadrati puliti in verticale) -->
         <section id="tab-calendar" class="tab-content hidden space-y-6">
             <div class="bg-white rounded-3xl p-3 sm:p-8 border border-rose-100 shadow-sm">
                 <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
@@ -430,7 +431,6 @@
         </div>
     </div>
 
-    <!-- SCRIPT MULTI-LINGUA COMPLETO CON PREVISIONI FUTURES E ADATTAMENTO PER IPHONE -->
     <script>
         const TRANSLATIONS = {
             de: {
@@ -537,9 +537,9 @@
             }
         };
 
-        const STORAGE_KEY_LOGS = 'aura_period_logs_v6';
-        const STORAGE_KEY_SETTINGS = 'aura_settings_v6';
-        const STORAGE_KEY_LANG = 'aura_lang_choice_v6';
+        const STORAGE_KEY_LOGS = 'aura_period_logs_v7';
+        const STORAGE_KEY_SETTINGS = 'aura_settings_v7';
+        const STORAGE_KEY_LANG = 'aura_lang_choice_v7';
 
         let currentLang = 'de';
         let periodLogs = [];
@@ -838,7 +838,7 @@
             lucide.createIcons();
         }
 
-        /* CALENDARIO: Testi nascosti su mobile stretto (hidden sm:block) per mantenere i quadrati grandi puliti */
+        /* RENDERING CALENDARIO CON QUADRATI GRANDI PULITI IN VERTICALE */
         function renderCalendar() {
             const t = TRANSLATIONS[currentLang];
             const grid = document.getElementById('calendar-days-grid');
@@ -856,7 +856,7 @@
 
             for (let i = 0; i < firstDayIndex; i++) {
                 const emptyCell = document.createElement('div');
-                emptyCell.className = 'h-12 sm:h-24 p-1 bg-cream/30 rounded-xl sm:rounded-2xl opacity-40';
+                emptyCell.className = 'h-16 sm:h-24 p-1 bg-cream/30 rounded-2xl opacity-40';
                 grid.appendChild(emptyCell);
             }
 
@@ -931,7 +931,7 @@
                 }
 
                 const dayCell = document.createElement('div');
-                let cellStyle = "h-12 sm:h-24 p-1 sm:p-2 rounded-xl sm:rounded-2xl border transition-all flex flex-col items-center sm:items-stretch justify-center sm:justify-between ";
+                let cellStyle = "h-16 sm:h-24 p-1.5 sm:p-2 rounded-2xl border transition-all flex flex-col justify-between ";
 
                 const isToday = dateObj.getTime() === today.getTime();
                 if (isToday) {
@@ -954,11 +954,10 @@
 
                 dayCell.className = cellStyle;
                 dayCell.innerHTML = `
-                    <div class="flex items-center justify-center sm:justify-between">
+                    <div class="flex items-center justify-between">
                         <span class="text-xs sm:text-sm font-semibold">${day}</span>
                         ${isToday ? `<span class="hidden sm:inline text-[9px] uppercase tracking-wider font-extrabold px-1.5 py-0.5 rounded bg-white/20">${todayLabel}</span>` : ''}
                     </div>
-                    ${isToday ? `<span class="sm:hidden text-[8px] leading-none uppercase font-extrabold">Hoy</span>` : ''}
                     <div class="hidden sm:block text-[10px] font-medium leading-tight">
                         ${isActualPeriod ? t.legPeriod : ''}
                         ${isPredictedPeriod ? t.legPred : ''}
