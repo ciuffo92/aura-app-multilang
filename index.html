@@ -1428,12 +1428,30 @@ document.addEventListener('keydown', (e) => {
         }
 
         function setCycleDay(n) {
-            // Wort ("Tag", "Giorno", ...) klein oben, Zahl groß darunter -> passt in jeder Sprache in den Kreis
-            const word = t('day_n', { n: '' }).trim();
-            document.getElementById('current-cycle-day').innerHTML =
-                '<span class="block max-w-[110px] mx-auto truncate text-[11px] sm:text-xs font-sans font-bold uppercase tracking-widest text-rose-500">' + word + '</span>' +
-                '<span class="block text-[2.6rem] sm:text-5xl leading-none font-serif font-bold text-plum">' + n + '</span>';
+            const el = document.getElementById('current-cycle-day');
+            el.textContent = t('day_n', { n: n });
+            fitCycleDay();
         }
+
+        // Schrift automatisch verkleinern, bis der Text in den Kreis passt (jede Sprache, jede Bildschirmgröße)
+        function fitCycleDay() {
+            const el = document.getElementById('current-cycle-day');
+            const ring = el.closest('.relative');
+            if (!el || !ring) return;
+            const maxW = ring.clientWidth * 0.62;
+            if (!maxW) return;
+            el.style.display = 'inline-block';
+            el.style.whiteSpace = 'nowrap';
+            let size = 40;
+            el.style.fontSize = size + 'px';
+            while (el.scrollWidth > maxW && size > 14) {
+                size -= 1;
+                el.style.fontSize = size + 'px';
+            }
+        }
+        window.addEventListener('resize', fitCycleDay);
+        window.addEventListener('orientationchange', fitCycleDay);
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitCycleDay);
 
         function updateDashboard() {
             const { avgCycle, avgBleed, variation } = getCalculatedAverages();
