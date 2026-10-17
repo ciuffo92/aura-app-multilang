@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Aura - Cycle & Ovulation-Tracker</title>
+    <title>Aura - Menstruationszyklus & Eisprung-Tracker</title>
     <!-- App web für iPhone (Home-Bildschirm) -->
     <meta name="theme-color" content="#FDF8F5">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -240,7 +240,7 @@
                             </svg>
                             <div class="absolute text-center">
                                 <span id="current-cycle-day" class="block text-4xl font-serif font-bold text-plum">Tag --</span>
-                                <span id="total-cycle-length-label" class="text-xs text-slate-500 font-medium">von 28 Tagen</span>
+                                <span id="total-cycle-length-label" class="block text-xs text-slate-500 font-medium mt-1">von 28 Tagen</span>
                             </div>
                         </div>
 
@@ -1440,14 +1440,15 @@ document.addEventListener('keydown', (e) => {
             if (!el || !ring) return;
             const maxW = ring.clientWidth * 0.62;
             if (!maxW) return;
-            el.style.display = 'inline-block';
             el.style.whiteSpace = 'nowrap';
+            el.style.display = 'inline-block'; // nur zum Messen
             let size = 40;
             el.style.fontSize = size + 'px';
-            while (el.scrollWidth > maxW && size > 14) {
+            while (el.offsetWidth > maxW && size > 14) {
                 size -= 1;
                 el.style.fontSize = size + 'px';
             }
+            el.style.display = 'block'; // Beschriftung bleibt darunter
         }
         window.addEventListener('resize', fitCycleDay);
         window.addEventListener('orientationchange', fitCycleDay);
