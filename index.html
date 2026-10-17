@@ -1450,6 +1450,12 @@ document.addEventListener('keydown', (e) => {
                 el.style.fontSize = size + 'px';
             }
             el.style.display = 'block'; // Beschriftung bleibt darunter
+            // Deutsch/Englisch ("Tag", "Day"): g und y ragen nach unten -> Beschriftung etwas weiter nach unten
+            const label = document.getElementById('total-cycle-length-label');
+            if (label) {
+                label.style.position = 'relative';
+                label.style.top = (currentLang === 'de' || currentLang === 'en') ? '5px' : '0px';
+            }
         }
         window.addEventListener('resize', fitCycleDay);
         window.addEventListener('orientationchange', fitCycleDay);
