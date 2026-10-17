@@ -240,7 +240,7 @@
                             </svg>
                             <div class="absolute text-center">
                                 <span id="current-cycle-day" class="block text-4xl font-serif font-bold text-plum">Tag --</span>
-                                <span id="total-cycle-length-label" class="block relative top-[3px] text-xs text-slate-500 font-medium">von 28 Tagen</span>
+                                <span id="total-cycle-length-label" class="text-xs text-slate-500 font-medium block">von 28 Tagen</span>
                             </div>
                         </div>
 
@@ -1443,7 +1443,7 @@ document.addEventListener('keydown', (e) => {
             el.style.whiteSpace = 'nowrap';
             el.style.lineHeight = '2.5rem';
             el.style.display = 'inline-block'; // nur zum Messen
-            let size = 40;
+            let size = 36; // = text-4xl, wie ursprünglich
             el.style.fontSize = size + 'px';
             while (el.offsetWidth > maxW && size > 14) {
                 size -= 1;
